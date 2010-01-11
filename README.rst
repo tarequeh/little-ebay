@@ -10,9 +10,9 @@ Register, bid, buy, sell and track items on little-ebay.
 
 Requirements
 ============
-1. `django-uni-form <http://github.com/pydanny/django-uni-form>`
-2. `jQuery <http://jquery.com/>` 
-2. `TinyMCE <http://tinymce.moxiecode.com/>`
+1. `django-uni-form <http://github.com/pydanny/django-uni-form>`_
+2. `jQuery <http://jquery.com/>`_
+3. `TinyMCE <http://tinymce.moxiecode.com/>`_
 
 Installation
 ============
