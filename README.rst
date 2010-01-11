@@ -23,7 +23,8 @@ Installation
 Usage
 =====
 1. To run the example application: complete installation, synchronize database and use runserver.
-2. To include in your own application, follow the example applications deployment
+2. Create a few item categories from admin.
+3. To include in your own application, follow deployment demonstrated in the example application.
 
 More
 ====
