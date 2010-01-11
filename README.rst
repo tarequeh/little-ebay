@@ -13,6 +13,7 @@ Requirements
 1. `django-uni-form <http://github.com/pydanny/django-uni-form>`_
 2. `jQuery <http://jquery.com/>`_
 3. `TinyMCE <http://tinymce.moxiecode.com/>`_
+4. `jQuery Countdown <http://keith-wood.name/countdown.html>`_
 
 Installation
 ============
