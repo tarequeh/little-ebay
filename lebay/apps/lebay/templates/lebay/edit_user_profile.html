@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load uni_form_tags %}
+
+{% block title %}Edit User Profile{% endblock %}
+
+{% block content %}
+    <form action="." method="post" class="uniForm">
+        <h3>Edit User Profile:</h3>
+        {{ form|as_uni_form }}
+        <p><input type="submit" value="Save Changes" /></p>
+    </form>
+{% endblock %}

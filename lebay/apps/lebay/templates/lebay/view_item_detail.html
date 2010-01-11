@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load uni_form_tags %}
+
+{% block title %}View Auction Event{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/jquery.countdown.css" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    {% if item_locked %}
+        <div class='info'><p>Item is on auction, details cannot be edited.</p></div>
+    {% endif %}
+    <h3>{{ item.title|title }}</h3>{% ifequal item.seller request.user.user %}
+    <div class='posted'><a href="{% url lebay_edit_item_detail item.pk %}">Edit Item</a>{% endifequal %}</div> 
+    <strong>Description:</strong>
+    <div class="contentdescription">{{ item.description|safe }}</div>
+    <p><strong>Condition: </strong>{{ item.get_condition }}</p>
+    <p><strong>Seller: </strong>{{ item.seller.username }}</p>
+    <p><strong>Category: </strong>{{ item.category }}</p>
+    <p><strong>Status: </strong>{{ item.get_status }}</p>
+{% endblock %}

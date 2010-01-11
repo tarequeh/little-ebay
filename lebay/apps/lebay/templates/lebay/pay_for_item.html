@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load uni_form_tags %}
+
+{% block title %}Confirm Payment{% endblock %}
+
+{% block content %}
+    <h3>Confirm Payment:</h3>
+    <p>You are paying for item: <a href="{% url lebay_view_auction_event auction_event.pk %}">{{ auction_event.item.title }}</a></p>
+    <form action="." method="post" class="uniForm">
+        {{ form|as_uni_form }}
+        <p><input type="submit" value="Submit Payment" /></p>
+    </form>
+{% endblock %}

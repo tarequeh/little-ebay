@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans "Django Admin" %}{% endblock %}
+
+{% block extrahead %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+ tinyMCE.init({
+     mode : "textareas",
+     theme : "advanced",
+     theme_advanced_toolbar_location : "top",
+     theme_advanced_toolbar_align : "left",
+     theme_advanced_statusbar_location : "bottom",     
+ });
+</script>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "Django Admin" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

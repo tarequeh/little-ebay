@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load uni_form_tags %}
+
+{% block title %}Edit Item Detail{% endblock %}
+
+{% block extra_scripts %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+ tinyMCE.init({
+     mode : "textareas",
+     theme : "advanced",
+     theme_advanced_toolbar_location : "top",
+     theme_advanced_toolbar_align : "left",
+     theme_advanced_statusbar_location : "bottom",     
+ });
+</script>
+{% endblock %}
+
+{% block content %}
+    <form action="." method="post" class="uniForm">
+        {{ item_form|as_uni_form }}
+        <p><input type="submit" value="Save Changes" /></p>
+    </form>
+{% endblock %}

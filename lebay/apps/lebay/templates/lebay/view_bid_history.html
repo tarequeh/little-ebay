@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load uni_form_tags %}
+
+{% block title %}View Bid History{% endblock %}
+
+{% block content %}
+    <h3>Bid history for <a href="{% url lebay_view_auction_event auction_event.pk %}">{{ auction_event.item.title|title }}</a></h3>
+    <table cellpadding=0 cellspacing=0 class="contenttable">
+        <thead>
+            <tr>
+                <td>User</td>
+                <td>Amount</td>
+                <td>Time</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bid in bids %}
+                <tr>
+                    <td>{% ifequal auction_event.item.seller request.user.user %}<a href="{% url lebay_view_user_profile bid.bidder.pk %}">{{ bid.bidder.username }}</a>{% else %}{% ifequal bid.bidder request.user.user %}Your bid{% else %}{{ bid.bidder.username }}{% endifequal %}{% endifequal %}</td>
+                    <td>${{ bid.amount }}{% ifequal highest_bid bid %} (Winning bid){% endifequal %}</td>
+                    <td>{{ bid.time_created|date:"g:i A, j N Y" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

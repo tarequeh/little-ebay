@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load uni_form_tags %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+    <h3>Search Results</h3>
+    <table cellpadding=0 cellspacing=0 class="contenttable">
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Condition</td>
+                <td>Price</td>
+                <td>Ending on</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for auction_event in matching_auctions %}
+                <tr>
+                    <td><a href="{% url lebay_view_auction_event auction_event.pk %}">{{ auction_event.item.title|title }}</a></td>
+                    <td>{{ auction_event.item.get_condition }}</td>
+                    <td>${{ auction_event.get_current_price }}</td>
+                    <td>{{ auction_event.end_time|date:"g:i A, j N Y" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Payments{% endblock %}
+
+{% block content %}
+    <form action="." method="post" class="uniForm">
+        <table cellpadding=0 cellspacing=0 class="contenttable">
+            <thead>
+                <tr>
+                    <td>Auction</td>
+                    <td>Invoice</td>
+                    <td>Status</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sales_data in sales_formset %}
+                    <tr>
+                        <td width=40%><a href="{% url lebay_view_auction_event sales_data.sale.auction_event.pk %}">{{ sales_data.sale.auction_event.item.title }}</a></td>
+                        <td width=30%>{{ sales_data.sale.invoice_number }}</td>
+                        <td>{{ sales_data.form.payment_status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p><input type="submit" value="Save Changes" /></p>
+    </form>
+{% endblock %}

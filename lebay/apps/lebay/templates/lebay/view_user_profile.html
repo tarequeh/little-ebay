@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load uni_form_tags %}
+
+{% block title %}View User{% endblock %}
+
+{% block content %}
+    {% ifequal user request.user.user %}
+        <div class='info'><p>This is you!</p></div>
+    {% endifequal %}
+    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+    {% ifequal user request.user.user %}
+        <div class='posted'><a href="{% url lebay_edit_user_profile %}">Edit Profile</a></div>
+    {% endifequal %} 
+    <p><strong>Email: </strong>{{ user.email }}</p>
+    <p><strong>Address Line 1: </strong>{{ user.address_line_1 }}</p>
+    {% if user.address_line_2 %}
+        <p><strong>Address Line 2: </strong>{{ user.address_line_2 }}</p>
+    {% endif %}
+    <p><strong>City: </strong>{{ user.city }}</p>
+    <p><strong>State: </strong>{{ user.state }}</p>
+    <p><strong>Zip: </strong>{{ user.zipcode }}</p>
+    <p><strong>Phone: </strong>{{ user.phone }}</p>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+    {% for category in categories %}
+        <h2><a href="{% url lebay_view_category category.pk %}">{{ category.title }}</a></h2>
+        <p>{{ category.description|safe }}</p>
+        {% ifnotequal forloop.first forloop.last %}
+            <hr />
+        {% endifnotequal %}
+    {% endfor %}
+{% endblock %}

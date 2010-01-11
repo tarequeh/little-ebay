@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% load uni_form_tags %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+    <form action="." method="post" class="uniForm">
+        {{ form|as_uni_form }}
+        <p><input type="submit" value="Register" /></p>
+    </form>
+{% endblock %}

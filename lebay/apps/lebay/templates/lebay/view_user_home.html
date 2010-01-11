@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}All Auctions{% endblock %}
+
+{% block content %}
+    <h3>User Profile Menu</h3>
+    <hr />
+    <div id="menu">
+        <a href="{% url lebay_view_user_profile request.user.user.pk %}">View Profile</a>
+        <a href="{% url lebay_edit_user_profile %}">Edit Profile</a>
+        <a href="{% url lebay_change_password %}">Change Password</a>
+        {% if request.user.user.is_seller %}
+            <a href="{% url lebay_edit_seller_profile %}">Edit Seller Profile</a>
+            <a href="{% url lebay_manage_payments %}">Manage Payments</a>
+        {% endif %}
+    </div>    
+    <h3>Items on Sale</h3>
+    <table cellpadding=0 cellspacing=0 class="contenttable">
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Condition</td>
+                <td>Price</td>
+                <td>Ending on</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for auction_event in current_auctions %}
+                <tr>
+                    <td><a href="{% url lebay_view_auction_event auction_event.pk %}">{{ auction_event.item.title|title }}</a></td>
+                    <td>{{ auction_event.item.get_condition }}</td>
+                    <td>${{ auction_event.get_current_price }}</td>
+                    <td>{{ auction_event.end_time|date:"g:i A, j N Y" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Items Won</h3>
+    <table cellpadding=0 cellspacing=0 class="contenttable">
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Condition</td>
+                <td>Price</td>
+                <td>Ended on</td>
+                <td>Payment Status</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for auction_event in won_auctions %}
+                <tr>
+                    <td><a href="{% url lebay_view_auction_event auction_event.pk %}">{{ auction_event.item.title|title }}</a></td>
+                    <td>{{ auction_event.item.get_condition }}</td>
+                    <td>${{ auction_event.get_current_price }}</td>
+                    <td>{{ auction_event.end_time|date:"g:i A, j N Y" }}</td>
+                    <td>{% if not auction_event.is_paid %}<a href="{% url lebay_pay_for_item auction_event.pk %}">Submit Payment</a>{% else %}{{ auction_event.get_payment_status }}{% endif %}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h3>Items in Inventory</h3>
+    <table cellpadding=0 cellspacing=0 class="contenttable">
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Condition</td>
+                <td>Category</td>
+                <td>Status</td>
+                <td>Re-list</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in listable_items %}
+                <tr>
+                    <td><a href="{% url lebay_view_item_detail item.pk %}">{{ item.title|title }}</a></td>
+                    <td>{{ item.get_condition }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.get_status }}</td>
+                    <td><a href="{% url lebay_list_existing_item item.pk %}">Click</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load uni_form_tags %}
+
+{% block title %}List an Item{% endblock %}
+
+{% block content %}
+    <h3>Relisting of {{ item.title }}</h3>
+    <form action="." method="post" class="uniForm">
+        {{ auction_form|as_uni_form }}
+        <p><input type="submit" value="List Item" /></p>
+    </form>
+{% endblock %}
